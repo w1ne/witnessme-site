@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Privacy — WitnessMe</title>
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --pure-black: #000;
+            --white: #fff;
+            --dim: #b8b8b8;
+            --red: #ff1a1a;
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            background: var(--black);
+            color: var(--white);
+            font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        main {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 24px 96px;
+        }
+        h1 {
+            color: var(--white);
+            font-size: 40px;
+            letter-spacing: 2px;
+            margin: 0 0 4px;
+            text-transform: uppercase;
+        }
+        .updated {
+            color: var(--dim);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: var(--red);
+            font-size: 22px;
+            letter-spacing: 1px;
+            margin: 48px 0 12px;
+            text-transform: uppercase;
+        }
+        h3 {
+            color: var(--white);
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin: 24px 0 8px;
+            text-transform: uppercase;
+        }
+        a { color: var(--red); text-decoration: none; border-bottom: 1px solid var(--red); }
+        a:hover { background: var(--red); color: var(--pure-black); }
+        ul { padding-left: 24px; }
+        li { margin: 6px 0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #2a2a2a;
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: var(--pure-black); color: var(--dim); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; }
+        code { background: var(--pure-black); padding: 2px 6px; }
+        hr { border: 0; border-top: 1px solid #2a2a2a; margin: 48px 0; }
+        .rule { color: var(--red); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+<main>
+    <div class="rule">WitnessMe</div>
+    <h1>Privacy Policy</h1>
+    <div class="updated">Last updated: 2026-05-18</div>
+
+    <p>WitnessMe is a focus app. We collect as little as possible. This page explains what we do and don't collect, and what we never will.</p>
+
+    <h2>TL;DR</h2>
+    <ul>
+        <li>We don't ask for your name, email, phone, or any account.</li>
+        <li>We don't upload your camera feed, photos, or video — pose detection runs entirely on your device.</li>
+        <li>We send only your <strong>pushup rep count</strong> and a <strong>randomly-generated anonymous ID</strong> to our server, so you can appear on a global anonymous leaderboard.</li>
+        <li>We don't sell anything. We don't run ads. We don't have any third-party analytics SDKs at launch.</li>
+    </ul>
+
+    <h2>What we collect</h2>
+    <table>
+        <thead><tr><th>Data</th><th>Where it lives</th><th>Why</th></tr></thead>
+        <tbody>
+            <tr><td>Your list of blocked app package names</td><td>On your device only (Android DataStore). Never leaves.</td><td>The app needs to know what to block.</td></tr>
+            <tr><td>Camera frames during a pushup session</td><td>In memory on your device only. Never written to storage. Never transmitted.</td><td>Pose detection (MediaPipe) runs entirely on-device.</td></tr>
+            <tr><td>Your pushup rep count (e.g. "10")</td><td>Sent to our Cloudflare backend, stored against an anonymous user ID.</td><td>Powers the global leaderboard.</td></tr>
+            <tr><td>An anonymous user ID (random UUID) and a randomly generated handle (e.g. <code>IRON_WITNESS_42</code>)</td><td>Stored on your device and on our server.</td><td>Identifies you on the leaderboard. Never linked to anything personal.</td></tr>
+        </tbody>
+    </table>
+
+    <h2>What we don't collect</h2>
+    <ul>
+        <li>Your name, email, phone, address, or any other personal identifier</li>
+        <li>Photos, videos, or any visual data from your camera</li>
+        <li>Your contacts, calendar, location, or any health data</li>
+        <li>Which apps you tried to open, when, or for how long</li>
+        <li>Any information from the apps you block</li>
+    </ul>
+
+    <h2>Permissions we ask for, and why</h2>
+    <table>
+        <thead><tr><th>Permission</th><th>Why</th></tr></thead>
+        <tbody>
+            <tr><td>Camera</td><td>To count pushups via on-device pose detection. Frames are not stored or transmitted.</td></tr>
+            <tr><td>Usage access</td><td>To detect when one of your selected blocked apps is in the foreground.</td></tr>
+            <tr><td>Foreground service</td><td>To run the polling check that detects the foreground app.</td></tr>
+            <tr><td>Notifications</td><td>To show a persistent "WitnessMe is watching" notification (required for the foreground service).</td></tr>
+            <tr><td>Query all packages</td><td>To list installed apps in the picker.</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Third parties</h2>
+    <p><strong>Cloudflare</strong> (US / global edge) hosts the leaderboard backend. Cloudflare may log standard request metadata (IP address, user agent) per <a href="https://www.cloudflare.com/privacypolicy/">their privacy policy</a>.</p>
+    <p>That's the entire list. No analytics, no ads, no third-party SDKs.</p>
+
+    <h2>Data retention and deletion</h2>
+    <ul>
+        <li>Your local data lives on your device. Uninstall the app to delete it.</li>
+        <li>Your anonymous server data (rep counts, leaderboard standing) is stored indefinitely on Cloudflare D1 against your anonymous UUID.</li>
+        <li><strong>Delete it yourself in-app:</strong> open the LEAGUE screen → "DELETE MY DATA" → CONFIRM. Hard-deletes your profile, reps, and league memberships from the server immediately. Cannot be undone.</li>
+        <li>Alternatively, email <a href="mailto:andrii@witnessme.fit">andrii@witnessme.fit</a> with your handle and we'll remove it manually.</li>
+    </ul>
+
+    <h2>Changes</h2>
+    <p>If we change this policy in a material way (e.g. add analytics, change what's transmitted), the next app update will surface the change in-app before any new data is collected.</p>
+
+    <h2>Contact</h2>
+    <p><a href="mailto:andrii@witnessme.fit">andrii@witnessme.fit</a></p>
+
+    <hr>
+    <p style="color: var(--dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">
+        WitnessMe — pick your enemies. Pay the tax. The rule is the rule.
+    </p>
+</main>
+</body>
+</html>
